@@ -1,0 +1,112 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@import './variable';
+@import './mixins';
+
+body {
+    background: pink;
+    padding: 20px;
+    position: relative;
+    @include flex();
+    @include w-h('100vh');
+    @include mobile {
+        display: block;
+        height: auto;
+        padding: 5px;
+    }
+}
+.warp {
+    max-width: 1200px;
+    padding: 20px;
+    background-color: lavender;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    @include w-h('85%');
+    @include tablet {
+        @include w-h();
+    }
+    @include mobile {
+        padding: 0;
+        @include w-h();
+    }
+    &__inner {
+        width: 24%;
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 10px 0;
+        @include tablet {
+            width: 48%;
+        }
+        @include mobile {
+           @include w-h('auto')
+        }
+        & img {
+            object-fit: cover;
+            object-position: center;
+            @include transition();
+            @include w-h();
+        }
+        & img:hover {
+            transform: scale(1.2);
+            opacity: .7;
+        }
+    }
+}
+.gallery {
+    position: fixed;
+    top: 0;
+    background-color: rgba(0,0,0,.7);
+    @include flex;
+    @include w-h();
+    & .close {
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        font-size: 35px;
+        color: aliceblue;
+       @include transition();
+    }
+    & .close:hover {
+        @include transform();
+    }
+    &__img {
+        @include flex();
+        @include w-h();
+        
+        & img {
+            object-fit: cover;
+            border-radius: 10px;
+            width: 70%;
+            height: 80%;
+            @include mobile {
+                height: 30%;
+            }
+            @include tablet {
+                height: 40%;
+            }
+        }
+    }
+    &__left {
+        @include r-l("l");
+        @include transition();
+    }
+    &__left:hover {
+        @include transform();
+    }
+    &__right {
+        @include r-l();
+        @include transition();
+    }
+    &__right:hover {
+        @include transform();
+    }
+}
+.hiden {
+    display: none;
+}
